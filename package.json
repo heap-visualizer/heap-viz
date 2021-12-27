@@ -1,0 +1,26 @@
+{
+  "name": "heap-viz",
+  "version": "1.0.0",
+  "description": "\"a data structure visualization and collaboration tool\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heap-visualizer/heap-viz.git"
+  },
+  "keywords": [
+    "\"heap",
+    "data",
+    "structures",
+    "visualization",
+    "websockets\""
+  ],
+  "author": "\"Yogi Paturu, Ying Liu, Terence Petersen, James Maguire, Baron Bugaric\"",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/heap-visualizer/heap-viz/issues"
+  },
+  "homepage": "https://github.com/heap-visualizer/heap-viz#readme"
+}

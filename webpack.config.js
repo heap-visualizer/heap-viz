@@ -5,14 +5,14 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 
 module.exports = {
-    entry: "./src/index.js",
+    entry: "./src/index.tsx",
     output: {
         path: path.join(__dirname, "build"),
         publicPath: '/build',
-        filename: "index_bundle.js"
+        filename: "index.js"
     },
     plugins: [
-    new CleanWebpackPlugin(),
+    new HtmlWebPackPlugin(),
     ],
     mode: 'development',
     module: {
@@ -34,9 +34,6 @@ module.exports = {
             exclude: /npm_modules/
           },
           {
-            //npm install -D sass-loader css-loader style-loader webpack
-            // /\.s[ac]ss$/i
-            // /\.css /
             test: /\.s?css/,
             use: ["style-loader", "css-loader", "sass-loader"
             ],
@@ -69,7 +66,7 @@ module.exports = {
     },
     devServer: {
       static: {
-        directory: path.join(__dirname, '/src'),
+        directory: path.join(__dirname, '/build/index.html'),
         },
       proxy: {
         '/': 'http://localhost:3000'

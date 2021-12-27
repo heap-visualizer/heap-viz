@@ -22,5 +22,17 @@
   "bugs": {
     "url": "https://github.com/heap-visualizer/heap-viz/issues"
   },
-  "homepage": "https://github.com/heap-visualizer/heap-viz#readme"
+  "homepage": "https://github.com/heap-visualizer/heap-viz#readme",
+  "dependencies": {
+    "clean-webpack-plugin": "^4.0.0",
+    "html-webpack-plugin": "^5.5.0",
+    "path": "^0.12.7",
+    "webpack": "^5.65.0"
+  },
+  "devDependencies": {
+    "clean-webpack-plugin": "^4.0.0",
+    "html-webpack-plugin": "^5.5.0",
+    "path": "^0.12.7",
+    "webpack": "^5.65.0"
+  }
 }

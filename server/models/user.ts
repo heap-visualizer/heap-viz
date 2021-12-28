@@ -10,6 +10,10 @@ const User = new Schema({
     type: String,
     required: true,
   },
+  storedArrays: {
+    type: Array,
+    required: false,
+  }
 });
 
 export default mongoose.model('user', User);

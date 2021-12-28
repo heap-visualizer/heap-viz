@@ -28,6 +28,7 @@
   "homepage": "https://github.com/heap-visualizer/heap-viz#readme",
   "dependencies": {
     "@material-ui/core": "^4.12.3",
+    "@mui/icons-material": "^5.2.5",
     "babel-loader": "^8.2.3",
     "clean-webpack-plugin": "^4.0.0",
     "cors": "^2.8.5",

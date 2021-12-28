@@ -3,7 +3,7 @@ import React from 'react';
 import { render } from 'react-dom';
 
 
-const App = () => {
+const SavedProjects = () => {
 
 return (
     <p>goodbye</p>
@@ -11,4 +11,4 @@ return (
 }
 
 
-export default App;
+export default SavedProjects;

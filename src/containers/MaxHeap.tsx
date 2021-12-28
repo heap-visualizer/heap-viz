@@ -2,17 +2,17 @@
 import React from 'react';
 import { render } from 'react-dom';
 import Button from '@material-ui/core';
-import HeapArray from './HeapArray';
-import HeapTree from './HeapTree';
+import HeapArray from '../components/HeapArray';
+import HeapTree from '../components/HeapTree';
 
-const MinHeap = () => {
+const MaxHeap = () => {
 
     return (
-        <div id = "minHeapButtons" className = "minHeapButtons">
+        <div id = "maxHeapButtons" className = "maxHeapButtons">
             {/* <Button variant = "cointained">Insert:</Button> */}
             {/* <Button id = "insertRandomButton" onClick = {() => {}} variant = "cointained">Insert Random</Button>
             <Button id = "deleteMinButton" onClick = {() => {}} variant = "cointained">Delete Min</Button>
-            <Button id = "deleteHeapButton"onClick = {() => {}} variant = "cointained">Delete Heap</Button> */}
+            <Button id = "deleteHeapButton" onClick = {() => {}} variant = "cointained">Delete Heap</Button> */}
             <HeapArray/>
             <HeapTree/>
         </div>
@@ -21,4 +21,4 @@ const MinHeap = () => {
 }
 
 
-export default MinHeap;
+export default MaxHeap;

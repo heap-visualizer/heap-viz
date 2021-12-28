@@ -3,7 +3,7 @@ const authRouter = express.Router();
 import passport from 'passport';
 import bcrypt from 'bcrypt';
 import User from '../models/user';
-import authControllers from '../config/authControllers.cjs';
+// import authControllers from '../config/authControllers.cjs';
 
 authRouter.get('/login/success', (req, res) => {
   if (req.user) {

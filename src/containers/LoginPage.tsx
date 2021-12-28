@@ -42,8 +42,11 @@ export const LoginPage = (props: any) => { // disable login submit button if loa
     const { username, password } = formValue;
     // disable login button by set loading to true
     setLoading(true);
-    dispatch(login({ username, password })).unwrap().then(() => {
-      setRedirect(true);
+    dispatch(login({ username, password })).unwrap().then((data) => {
+      if(data.username) {
+        setRedirect(true);
+      }
+      else throw new Error('login failed');
     }).catch(() => { // if login fails, enable login button again
       setLoading(false);
     });

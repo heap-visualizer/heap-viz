@@ -6,7 +6,7 @@ import { RegisterPage } from './containers/SignUpPage'
 
 
 function LandingPage() {
-  const [changeToFormDisplay, setChangeToFormDisplay] = useState(true);
+  const [changeToFormDisplay, setChangeToFormDisplay] = useState(false);
   const [formToDisplay, setFormToDisplay] = useState('login');
 
   const handleStartNow = () => {
@@ -14,7 +14,7 @@ function LandingPage() {
   }
 
   const handleBackButton = () => {
-    setChangeToFormDisplay(true);
+    setChangeToFormDisplay(false);
     setFormToDisplay('login');
   }
   function guestLogin() {

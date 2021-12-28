@@ -10,5 +10,5 @@ typings/
 .env
 .env.test
 dist
-
+build
 package-lock.json

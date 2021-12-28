@@ -9,6 +9,7 @@ import flash from 'connect-flash';
 
 dotenv.config({ path: './.env' });
 import authRouter from './authRoutes/authRouter';
+import UserController from './controllers/UserController';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -45,8 +46,11 @@ app.use(function (req, res, next) {
 app.get('/', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../index.html'));
 });
-
+//testing endpoints
 app.use('/auth', authRouter);
+app.post('/register', UserController.createUser);
+app.post('/saveArrays/:name', UserController.saveArrays);
+app.get('/getArrays/:name', UserController.getArrays);
 
 mongoose
   .connect(

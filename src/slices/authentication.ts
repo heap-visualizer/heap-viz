@@ -7,7 +7,7 @@ import { authService } from '../services/auth_service';
 // setMessage dispatched if authentication is successful or fails
 import { setMessage } from './messages';
 //create async thunks 
-import type {RootState} from '../store'
+import type {RootState} from '../utils/store'
 
 const user: User = JSON.parse(localStorage.getItem("user"));
 

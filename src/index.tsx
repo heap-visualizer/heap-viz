@@ -7,7 +7,7 @@ import {
   Route
 } from 'react-router-dom';
 import App from './App'
-import store from './store'
+import store from './utils/store'
 import { Provider } from 'react-redux'
 
 render(

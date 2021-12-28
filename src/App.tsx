@@ -1,7 +1,7 @@
 // import path from 'path/posix';
 import React from 'react';
 import { render } from 'react-dom';
-import LandingPage from './LandingPage';
+import LandingPage from './containers/LandingPage';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 

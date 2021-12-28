@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
-import { LoginPage } from './containers/LoginPage'
-import { RegisterPage } from './containers/SignUpPage'
+import { LoginPage } from './LoginPage'
+import { RegisterPage } from './SignUpPage'
 
 
 

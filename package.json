@@ -27,6 +27,8 @@
   },
   "homepage": "https://github.com/heap-visualizer/heap-viz#readme",
   "dependencies": {
+    "@reduxjs/toolkit": "^1.7.1",
+    "axios": "^0.24.0",
     "babel-loader": "^8.2.3",
     "clean-webpack-plugin": "^4.0.0",
     "cors": "^2.8.5",
@@ -35,6 +37,7 @@
     "path": "^0.12.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-redux": "^7.2.6",
     "ts-loader": "^9.2.6",
     "ts-node": "^10.4.0"
   },
@@ -47,6 +50,7 @@
     "@types/node": "^17.0.5",
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
+    "@types/regenerator-runtime": "^0.13.1",
     "babel-loader": "^8.2.3",
     "clean-webpack-plugin": "^4.0.0",
     "cross-env": "^7.0.3",

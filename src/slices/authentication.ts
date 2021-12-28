@@ -34,21 +34,21 @@ const initialState: LoggedInState = user
       // if needed add here
     },
     extraReducers: (builder) => { //extraReducers allows createSlice to respond to other action types besides the types it has generated
-      builder.addCase(register.fulfilled, (state, action) => {
+      builder.addCase(register.fulfilled, (state, _action) => {
         state.isLoggedIn = false;        
       })
-      builder.addCase(register.rejected, (state, action) => {
+      builder.addCase(register.rejected, (state, _action) => {
         state.isLoggedIn = false;
       })
       builder.addCase(login.fulfilled, (state, action) => {
         state.isLoggedIn = true;
         state.user = action.payload;
       })
-      builder.addCase(login.rejected, (state, action) => {
+      builder.addCase(login.rejected, (state, _action) => {
         state.isLoggedIn = false;
         state.user = null;
       })
-      builder.addCase(logout.fulfilled, (state, action) => {
+      builder.addCase(logout.fulfilled, (state, _action) => {
         state.isLoggedIn = false;
         state.user = null;
       })
@@ -64,7 +64,6 @@ export const register = createAsyncThunk(
     try {
       const {username, password} = user;
       const response = await authService.register(username, password);
-      
       thunkAPI.dispatch(setMessage(response.data.message));
       return response.data; //contains our response from server 
     } catch (error) {

@@ -11,4 +11,9 @@ typings/
 .env.test
 dist
 
+# package lock
 package-lock.json
+
+# build folder
+build/index.js
+build/index.html

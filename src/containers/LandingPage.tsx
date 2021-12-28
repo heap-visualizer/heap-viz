@@ -27,7 +27,7 @@ function LandingPage() {
       }
     });
   }
-  const [guest, setGuest] = useState(false);
+  const [guest, setGuest] = useState(true); // TODO change
 
   return (
     <div className='grid-container'>

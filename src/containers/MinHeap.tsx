@@ -14,7 +14,7 @@ const MinHeap = () => {
             <Button id = "deleteMinButton" onClick = {() => {}} variant = "cointained">Delete Min</Button>
             <Button id = "deleteHeapButton"onClick = {() => {}} variant = "cointained">Delete Heap</Button> */}
             <HeapArray/>
-            <HeapTree/>
+            {HeapTree([5, 3])}
         </div>
 
     )

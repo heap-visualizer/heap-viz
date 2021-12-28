@@ -135,20 +135,20 @@ export function swap(array: any[], i: number, j: number) {
   return array;
 }
 
-const min = new MinHeap([5, 10, 7, 1, 4, 6, 9, 12]);
-console.log(min);
-console.log(min.peek());
-console.log(min.remove());
-console.log(min);
-console.log(min.insert(0));
-console.log(min);
+// const min = new MinHeap([5, 10, 7, 1, 4, 6, 9, 12]);
+// console.log(min);
+// console.log(min.peek());
+// console.log(min.remove());
+// console.log(min);
+// console.log(min.insert(0));
+// console.log(min);
 
-const max = new MaxHeap([5, 10, 7, 1, 4, 6, 9, 12]);
-console.log(max);
-console.log(max.peek());
-console.log(max.remove());
-console.log(max);
-console.log(max.insert(15));
-console.log(max);
-console.log(max.insert(7));
-console.log(max);
+// const max = new MaxHeap([5, 10, 7, 1, 4, 6, 9, 12]);
+// console.log(max);
+// console.log(max.peek());
+// console.log(max.remove());
+// console.log(max);
+// console.log(max.insert(15));
+// console.log(max);
+// console.log(max.insert(7));
+// console.log(max);

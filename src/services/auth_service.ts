@@ -3,9 +3,7 @@ Make asynchronous HTTP requests
 */
 import axios from 'axios';
 
-const API_URL = '/auth/';
-
-
+const API_URL = '/auth/'; //TODO keep as /register for now, change to /auth/signup and /auth/login
 
 export const register = (username: string, password: string) => {
   //make a post request to the server

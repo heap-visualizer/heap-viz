@@ -3,7 +3,7 @@ Make asynchronous HTTP requests
 */
 import axios from 'axios';
 
-const API_URL = '/mariposa/auth/';
+const API_URL = '/auth/';
 
 
 
@@ -14,7 +14,7 @@ export const register = (username: string, password: string) => {
 
 export const login = (username: string, password: string) => {
   return axios
-    .post(API_URL + 'signin', {username, password})
+    .post(API_URL + 'login', {username, password})
     .then((response) => {
       if (response.data.accessToken) {
         //set local storage key/value pair

@@ -11,12 +11,12 @@ import type {RootState} from '../store'
 
 const user: User = JSON.parse(localStorage.getItem("user"));
 
-interface User {
+export interface User {
   username: string;
   password: string;
 }
 
-interface LoggedInState {
+export interface LoggedInState {
   user: User;
   isLoggedIn: boolean;
   // loading: 'idle' | 'pending' | 'suceeded' | 'failed';

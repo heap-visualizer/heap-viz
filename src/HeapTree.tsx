@@ -5,8 +5,8 @@ import { render } from 'react-dom';
 
 const HeapTree = () => {
 
-return (
-    <p>goodbye</p>
+    return (
+        <p>goodbye</p>
     )
 }
 

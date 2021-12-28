@@ -7,25 +7,15 @@ import {
   Route
 } from 'react-router-dom';
 import App from './App'
-import DummyPage from './routes/DummyPage';
-import DummerPage from './routes/DummerPage';
+import store from './store'
+import { Provider } from 'react-redux'
+
+
+
 
 render(
-  <BrowserRouter>
-    <Routes>
-      <Route path='/' element={<App />}>
-        <Route path='dummy' element={<DummyPage />} />
-        <Route path='dummer' element={<DummerPage />} />
-        <Route
-          path="*"
-          element={
-            <main style={{ padding: "1rem" }}>
-              <p>There's nothing here!</p>
-            </main>
-          }
-        />
-      </Route>
-    </Routes>
-  </BrowserRouter>,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('app'),
-)
+);

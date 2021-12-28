@@ -5,7 +5,7 @@ const LocalStrategy = passportLocal.Strategy;
 
 function initialize(passport) {
   console.log('passport initialized');
-  const authenticateUser = (username: string, password, done) => {
+  const authenticateUser = (username, password, done) => {
     user
       .findOne({
         username: username,

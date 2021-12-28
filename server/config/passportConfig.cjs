@@ -1,15 +1,14 @@
 import passportLocal from 'passport-local';
 import bcrypt from 'bcrypt';
-import user from '../models/user';
+import User from '../models/user';
 const LocalStrategy = passportLocal.Strategy;
 
 function initialize(passport) {
   console.log('passport initialized');
   const authenticateUser = (username, password, done) => {
-    user
-      .findOne({
-        username: username,
-      })
+    User.findOne({
+      username: username,
+    })
       .then((user) => {
         if (!user) {
           return done(null, false, { message: 'User does not exist' });

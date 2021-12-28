@@ -54,7 +54,7 @@ app.get('/getArrays/:name', UserController.getArrays);
 
 mongoose
   .connect(
-    `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@immersive.wo6r5.mongodb.net/topic?retryWrites=true&w=majority`
+    `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@immersive.wo6r5.mongodb.net/heap?retryWrites=true&w=majority`
   )
   .then(() => {
     console.log('db connected!!!!!');

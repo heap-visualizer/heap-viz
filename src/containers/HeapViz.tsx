@@ -1,7 +1,7 @@
 // import path from 'path/posix';
 import React from 'react';
 import { render } from 'react-dom';
-import SavedProjects from './SavedProjects';
+import SavedProjects from '../components/SavedProjects';
 import OptionsPanel from './OptionsPanel';
 import VizSpace from './VizSpace';
 

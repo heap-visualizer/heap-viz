@@ -35,11 +35,6 @@ const OptionsPanel = () => {
       <button type="submit" onClick={() => handleLogout()}>
         Logout
       </button>
-      {/* <button type="submit" onClick={() => {authService.logout()}}>Logout </button> */}
-      {/* <IconButton aria-label="saveIcon" onClick = {save(localStorage.user.storedArrays)}><SaveIcon/></IconButton> */}
-      {/* <IconButton aria-label="logout" onClick = {authService.logout}><Logout/></IconButton> */}
-      {/* <Button id = "newMinHeap" onClick = {() => {}} variant = "cointained">New Min Heap</Button> */}
-      {/* <Button id = "newMaxHeap" onClick = {() => {}} variant = "cointained">New Max Heap</Button> */}
     </div>
   );
 };

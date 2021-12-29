@@ -22,7 +22,7 @@ function nodesAndEdges(inputHeap: Heap): ElementDefinition[] {
     const parentNode = nodes[parent];
     const { position } = parentNode;
     const xpos = position ? position.x + (shift * range[parent]) / 2 : middle;
-    const ypos = position ? position.y + 500 / levels : 50;
+    const ypos = position ? position.y + 400 / levels : 50;
     range.push(range[parent] / 2);
     const currNode = {
       data: { id: i.toString(), label: `${heap[i]}` },
@@ -51,7 +51,7 @@ const HeapTree = (props: HeapComponentProps) => {
       <CytoscapeComponent
         key={length}
         elements={elements}
-        style={{ width: '600px', height: '600px' }}
+        style={{ width: '600px', height: '500px' }}
       />
     </>
   );

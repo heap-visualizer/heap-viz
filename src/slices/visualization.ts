@@ -7,18 +7,18 @@ import { useAppSelector } from '../utils/hooks';
 import type { RootState } from '../utils/store';
 import axios from 'axios';
 import { User } from './authentication';
-import { Heap, MinHeap } from '../heap_classes/Heap';
+import { Heap, MaxHeap, MinHeap } from '../heap_classes/Heap';
 
 export interface visualizationState {
   storedArrays: number[][];
-  currentArray: number[];
   minHeap: MinHeap;
+  maxHeap: MaxHeap;
 }
 
 const initialState: visualizationState = {
   storedArrays: [],
-  currentArray: [1, 2, 3, 4, 5],
   minHeap: new MinHeap([10, 20, 30, 40, 50]),
+  maxHeap: new MaxHeap([10, 20, 30, 40, 50])
 };
 
 const visualizationSlice = createSlice({
@@ -27,13 +27,22 @@ const visualizationSlice = createSlice({
   reducers: {
     // if needed add here
     insertRandom: (state, action) => {
-      state.minHeap.insert(action.payload.number);
+      const { heapType } = action.payload;
+      heapType === 'MIN' ?
+        state.minHeap.insert(action.payload.number) :
+        state.maxHeap.insert(action.payload.number);
     },
-    deleteMin: (state, _action) => {
-      state.minHeap.remove();
+    remove: (state, action) => {
+      const { heapType } = action.payload;
+      heapType === 'MIN' ?
+        state.minHeap.remove() :
+        state.maxHeap.remove();
     },
-    deleteHeap: (state, _action) => {
-      state.minHeap.heap = [];
+    deleteHeap: (state, action) => {
+      const { heapType } = action.payload;
+      heapType === 'MIN' ?
+        state.minHeap.heap = [] :
+        state.maxHeap.heap = [];
     },
   },
   extraReducers: (builder) => {
@@ -59,6 +68,6 @@ export const storeArray = createAsyncThunk(
   }
 );
 
-export const { insertRandom, deleteMin, deleteHeap } =
+export const { insertRandom, remove, deleteHeap } =
   visualizationSlice.actions;
 export default visualizationSlice.reducer;

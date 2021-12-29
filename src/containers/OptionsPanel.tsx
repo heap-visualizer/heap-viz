@@ -1,42 +1,35 @@
 // import path from 'path/posix';
 import React from 'react';
 import { useAppDispatch, useAppSelector } from '../utils/hooks';
-import { logout, selectUser, User } from '../slices/authentication';
-import visualization, { storeArray } from '../slices/visualization';
+import { logout, selectUser, User, storeArray } from '../slices/authentication';
 
 const OptionsPanel = () => {
-  const user = useAppSelector((state) => state.auth.user);
-  const dispatch = useAppDispatch();
+    const user = useAppSelector((state) => state.auth.user);
+    const { minHeap } = useAppSelector((state) => state.visualization);
+    const { maxHeap } = useAppSelector((state) => state.visualization);
+    const dispatch = useAppDispatch();
 
-  const handleSave = (user: User) => {
-    // disable login button by set loading to true
-    const { username, storedArrays } = user;
-    // setLoading(true);
-    dispatch(storeArray({ username, password: null, storedArrays }))
-      .unwrap()
-      .then((data) => {
-        if (data.username) {
-        } else throw new Error('login failed');
-      })
-      .catch(() => {
-        // setLoading(false);
-      });
-  };
-  const handleLogout = () => {
-    dispatch(logout())
-  };
+    const handleSave = () => {
+        // disable login button by set loading to true
+        const { username } = user;
+        // setLoading(true);
+        dispatch(storeArray({ username, heaps: [minHeap.heap, maxHeap.heap] }))
+    };
+    const handleLogout = () => {
+        dispatch(logout())
+    };
 
-  
-  return (
-    <div id="optionsButtons" className="optionsButtons">
-      <button type="submit" onClick={() => handleSave(user)}>
-        Save
-      </button>
-      <button type="submit" onClick={() => handleLogout()}>
-        Logout
-      </button>
-    </div>
-  );
+
+    return (
+        <div id="optionsButtons" className="optionsButtons">
+            <button type="submit" onClick={() => handleSave()}>
+                Save
+            </button>
+            <button type="submit" onClick={() => handleLogout()}>
+                Logout
+            </button>
+        </div>
+    );
 };
 
 export default OptionsPanel;

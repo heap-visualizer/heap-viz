@@ -8,10 +8,12 @@ import { authService } from '../services/auth_service';
 import { setMessage } from './messages';
 //create async thunks
 import type { RootState } from '../utils/store';
+import axios from 'axios';
 
 // technically not *supposed* to do this in general but for our purposes it's fixing the error
 // "as string" essentially says that localStorage.getItem will be passed a string
-const user: User = { username: 'yogi', password: null, storedArrays: [[1, 2, 3, 4], [4, 5, 6, 7], [5, 6, 7, 8]] }  //JSON.parse(localStorage.getItem('user') as string);
+const user: User = JSON.parse(localStorage.getItem('user') as string);
+// { username: 'yogi', password: null, storedArrays: [[1, 2, 3, 4], [4, 5, 6, 7], [5, 6, 7, 8]] }  //JSON.parse(localStorage.getItem('user') as string);
 
 export interface User {
   _id?: string;
@@ -35,7 +37,9 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    // if needed add here
+    updateUser: (state, action) => {
+      state.user = action.payload.user
+    }
   },
   extraReducers: (builder) => {
     //extraReducers allows createSlice to respond to other action types besides the types it has generated
@@ -56,6 +60,9 @@ const authSlice = createSlice({
     builder.addCase(logout.fulfilled, (state, _action) => {
       state.isLoggedIn = false;
       state.user = { username: '', password: null };
+    });
+    builder.addCase(storeArray.fulfilled, (state, action) => {
+      state.user.storedArrays = action.payload.storedArrays;
     });
   },
 });
@@ -104,6 +111,28 @@ export const login = createAsyncThunk(
     }
   }
 );
+
+export interface HandleSavePayload {
+  username: string;
+  heaps: number[][];
+}
+
+export const storeArray = createAsyncThunk(
+  'visualization/storeArray', //action type
+  async (payload: HandleSavePayload, thunkAPI) => {
+    const { username, heaps } = payload;
+    return axios
+      .patch(`/saveArray/${username}`, { arrays: heaps })
+      .then((response: any) => {
+        console.log(response.data);
+        return response.data;
+      })
+      .catch((error: any) => {
+        return error.message;
+      });
+  }
+);
+
 
 export const logout = createAsyncThunk('auth/logout', async () => {
   await authService.logout();

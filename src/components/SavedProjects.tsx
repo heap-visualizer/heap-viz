@@ -13,9 +13,6 @@ const SavedProjects = () => {
         return acc;
     }, []) : [];
 
-    const handleMakeHeaps = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        console.log(e);
-    }
     return (
         <>
             <h4>Saved Heaps:</h4>

@@ -7,7 +7,7 @@ import HeapViz from './containers/HeapViz';
 
 import './stylesheets/styles.scss';
 
-const App = () => {
+const App = () => { // change back to landing page 
   return (
     <Router>
       <Routes>

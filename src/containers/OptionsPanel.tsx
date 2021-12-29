@@ -1,14 +1,7 @@
 // import path from 'path/posix';
 import React from 'react';
-import { render } from 'react-dom';
-import { Button, IconButton } from '@material-ui/core';
-import SaveIcon from '@mui/icons-material/Save';
-import SaveAlt from '@mui/icons-material/SaveAlt';
-import Logout from '@mui/icons-material/Logout';
-import axios from 'axios';
-import { authService } from '../services/auth_service';
 import { useAppDispatch, useAppSelector } from '../utils/hooks';
-import { selectUser, User } from '../slices/authentication';
+import { logout, selectUser, User } from '../slices/authentication';
 import visualization, { storeArray } from '../slices/visualization';
 
 const OptionsPanel = () => {
@@ -29,11 +22,18 @@ const OptionsPanel = () => {
         // setLoading(false);
       });
   };
+  const handleLogout = () => {
+    dispatch(logout())
+  };
 
+  
   return (
     <div id="optionsButtons" className="optionsButtons">
       <button type="submit" onClick={() => handleSave(user)}>
         Save
+      </button>
+      <button type="submit" onClick={() => handleLogout()}>
+        Logout
       </button>
       {/* <button type="submit" onClick={() => {authService.logout()}}>Logout </button> */}
       {/* <IconButton aria-label="saveIcon" onClick = {save(localStorage.user.storedArrays)}><SaveIcon/></IconButton> */}

@@ -47,10 +47,31 @@ const UserController = {
       });
   },
 
+  async saveArray(req, res) {
+    const { name } = req.params;
+    const { array } = req.body;
+
+    await User.findOne({ username: name })
+      .then((user) => {
+        user.storedArrays.push(array);
+        return user.save();
+      })
+      .then((user) => {
+        return res.status(200).json(user);
+      })
+      .catch((err) => {
+        return res.status(400).send('could not find the student');
+      });
+  },
+
   async deleteArray(req, res) {
     const { name } = req.params;
     const { array } = req.body;
-    await User.findOneAndDelete({ username: name }, { storedArrays: array })
+    await User.findOneAndUpdate(
+      { username: name },
+      { $pullAll: { storedArrays: [array] } },
+      { new: true }
+    )
       .then((user) => {
         if (user === null)
           return res.status(404).send(`${name} is not in the database`);

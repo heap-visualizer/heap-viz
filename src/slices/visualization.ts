@@ -2,21 +2,16 @@
 import regeneratorRuntime from 'regenerator-runtime';
 //createAsyncThunk returns a standard Redux thunk action creator
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { useAppSelector } from '../utils/hooks';
+import { useAppDispatch, useAppSelector } from '../utils/hooks';
 //create async thunks
-import type { RootState } from '../utils/store';
-import axios from 'axios';
-import { User } from './authentication';
 import { Heap, MaxHeap, MinHeap } from '../heap_classes/Heap';
 
 export interface visualizationState {
-  storedArrays: number[][];
   minHeap: MinHeap;
   maxHeap: MaxHeap;
 }
 
 const initialState: visualizationState = {
-  storedArrays: [],
   minHeap: new MinHeap([10, 20, 30, 40, 50]),
   maxHeap: new MaxHeap([10, 20, 30, 40, 50])
 };
@@ -44,30 +39,18 @@ const visualizationSlice = createSlice({
         state.minHeap.heap = [] :
         state.maxHeap.heap = [];
     },
-  },
-  extraReducers: (builder) => {
-    //extraReducers allows createSlice to respond to other action types besides the types it has generated
-    builder.addCase(storeArray.fulfilled, (state, action) => {
-      state.storedArrays.push(action.payload.storedArrays);
-    });
+    updateMinHeap: (state, action) => {
+      const { arr } = action.payload;
+      state.minHeap = new MinHeap(arr);
+    },
+    updateMaxHeap: (state, action) => {
+      const { arr } = action.payload;
+      state.maxHeap = new MaxHeap(arr);
+    }
+
   },
 });
 
-export const storeArray = createAsyncThunk(
-  'visualization/storeArray', //action type
-  async (user: User, thunkAPI) => {
-    const { username, storedArrays } = user;
-    return axios
-      .post(`/saveArrays/${username}`, { arrays: storedArrays })
-      .then((response: any) => {
-        return response.data;
-      })
-      .catch((error: any) => {
-        return error.message;
-      });
-  }
-);
-
-export const { insertRandom, remove, deleteHeap } =
+export const { insertRandom, remove, deleteHeap, updateMinHeap, updateMaxHeap } =
   visualizationSlice.actions;
 export default visualizationSlice.reducer;

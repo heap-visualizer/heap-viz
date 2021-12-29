@@ -18,7 +18,7 @@ export class MaxHeap implements Heap {
   heap: number[];
 
   constructor(array: number[] = []) {
-    this.heap = this.buildHeap(array);
+    this.heap = this.buildHeap(array.slice());
   }
 
   buildHeap(array: number[]) {
@@ -85,7 +85,7 @@ export class MinHeap implements Heap {
   heap: number[];
 
   constructor(array: number[] = []) {
-    this.heap = this.buildHeap(array);
+    this.heap = this.buildHeap(array.slice());
   }
 
   buildHeap(array: number[]) {

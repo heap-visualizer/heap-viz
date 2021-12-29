@@ -46,7 +46,8 @@ export const LoginPage = (props: any) => {
     dispatch(login({ username, password }))
       .unwrap()
       .then((data) => {
-        if (data.username !== '') {
+        console.log('DATA', data);
+        if (data.username) {
           setRedirect(true);
         } else throw new Error('login failed');
       })
@@ -58,13 +59,14 @@ export const LoginPage = (props: any) => {
 
   const handleFormDisplay = () => setFormToDisplay('register');
 
+  
   return (
     <div className="form-box">
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={handleLogin}
-        //handlelogin dispatches login() thunk
+      //handlelogin dispatches login() thunk
       >
         <Form>
           <h2 id="sign-in-text">Sign In</h2>

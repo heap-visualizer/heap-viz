@@ -49,11 +49,11 @@ const UserController = {
 
   async saveArray(req, res) {
     const { name } = req.params;
-    const { array } = req.body;
+    const { arrays } = req.body;
 
     await User.findOne({ username: name })
       .then((user) => {
-        user.storedArrays.push(array);
+        user.storedArrays.push(...arrays);
         return user.save();
       })
       .then((user) => {

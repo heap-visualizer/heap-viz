@@ -1,19 +1,34 @@
 // import path from 'path/posix';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import HeapArray from '../components/HeapArray';
 import HeapTree from '../components/HeapTree';
-import { Heap } from '../heap_classes/Heap';
+import { Heap, MinHeap } from '../heap_classes/Heap';
+import { insertRandom } from '../slices/visualization';
+import { useAppDispatch, useAppSelector } from '../utils/hooks';
 
-const MinHeap = (inputHeap: Heap) => {
+const MinHeapComponent = () => {
 
-    const [heap, addToHeap] = useState(inputHeap);
+    const { currentArray } = useAppSelector((state) => state.visualization);
+    const { minHeap } = useAppSelector((state) => state.visualization);
+    const [heap, setHeap] = useState(minHeap);
+
+    // dispatch method to dispatch an action and trigger a state change
+    const dispatch = useAppDispatch();
+
+    const handleInsertRandom = () => {
+        const add = Math.floor(Math.random() * minHeap.heap.length + 1);
+        dispatch(insertRandom({ number: add }));
+        console.log('MINHEAP', minHeap)
+    }
+
+    useEffect(() => { setHeap(minHeap) }, [minHeap]);
 
     return (
-        <div id = "minHeapButtons" className = "minHeapButtons">
-            <button id = "insertRandomButton" onClick = {() => {}}>Insert Random</button>
-            <button id = "deleteMinButton" onClick = {() => {}}>Delete Min</button>
-            <button id = "deleteHeapButton"onClick = {() => {}}>Delete Heap</button>
-            {HeapArray(heap)} 
+        <div id="minHeapButtons" className="minHeapButtons">
+            <button id="insertRandomButton" onClick={() => handleInsertRandom()}>Insert Random</button>
+            <button id="deleteMinButton" onClick={() => { }}>Delete Min</button>
+            <button id="deleteHeapButton" onClick={() => { }}>Delete Heap</button>
+            {HeapArray(minHeap)}
             {HeapTree(heap)}
         </div>
 
@@ -21,4 +36,4 @@ const MinHeap = (inputHeap: Heap) => {
 }
 
 
-export default MinHeap;
+export default MinHeapComponent;

@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import CytoscapeComponent from 'react-cytoscapejs';
 import { Heap, MinHeap } from '../heap_classes/Heap';
 import { ElementDefinition, ElementsDefinition } from 'cytoscape';
+import { useAppSelector } from '../utils/hooks';
+import { ProgressPlugin } from 'webpack';
 
 function nodesAndEdges(inputHeap: Heap): ElementDefinition[] {
   const { heap } = inputHeap;
@@ -26,11 +28,16 @@ function nodesAndEdges(inputHeap: Heap): ElementDefinition[] {
   return nodes.concat(edges);
 }
 
-const HeapTree = (heap: Heap) => {
+const HeapTree = (inputHeap: Heap) => {
+
+  const [heap, setHeap] = useState(inputHeap);
+  // This will launch only if propName value has chaged.
+  useEffect(() => { setHeap(inputHeap) }, [inputHeap]);
+
   const elements = nodesAndEdges(heap);
 
   return (
-    <CytoscapeComponent elements={elements} style={{ width: '600px', height: '600px' }} />
+    <CytoscapeComponent key={heap.heap.length.toString()} elements={elements} style={{ width: '600px', height: '600px' }} />
   )
 }
 

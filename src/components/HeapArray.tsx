@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import CytoscapeComponent from 'react-cytoscapejs';
 import { Heap, MinHeap } from '../heap_classes/Heap';
 import { ElementDefinition, ElementsDefinition } from 'cytoscape';
@@ -18,11 +18,16 @@ function nodesAndEdges(inputHeap: Heap): ElementDefinition[] {
   return nodes.concat(edges);
 }
 
-const HeapArray = (heap: Heap) => {
+const HeapArray = (inputHeap: Heap) => {
+
+  const [heap, setHeap] = useState(inputHeap);
+  // This will launch only if propName value has chaged.
+  useEffect(() => { setHeap(inputHeap) }, [inputHeap]);
+
   const elements = nodesAndEdges(heap);
 
   return (
-    <CytoscapeComponent elements={elements} style={{ width: '600px', height: '100px' }} />
+    <CytoscapeComponent key={heap.heap.length.toString()} elements={elements} style={{ width: '600px', height: '100px' }} />
   )
 }
 

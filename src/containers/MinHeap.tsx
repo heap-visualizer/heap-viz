@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import HeapArray, { HeapComponentProps } from '../components/HeapArray';
 import HeapTree from '../components/HeapTree';
 import { Heap, MinHeap } from '../heap_classes/Heap';
-import { deleteHeap, deleteMin, insertRandom } from '../slices/visualization';
+import { deleteHeap, insertRandom, remove } from '../slices/visualization';
 import { useAppDispatch, useAppSelector } from '../utils/hooks';
 
 const MinHeapComponent = () => {
@@ -18,19 +18,19 @@ const MinHeapComponent = () => {
 
     const handleInsertRandom = () => {
         const add = Math.floor(Math.random() * 100);
-        dispatch(insertRandom({ number: add }));
+        dispatch(insertRandom({ number: add, heapType: 'MIN' }));
         setHeap(minHeap) // update state on our container to the new global state
         setKey(minHeap.heap.length.toString()); // update the key prop that we're passing down
     }
 
-    const handleDeleteMin = () => {
-        dispatch(deleteMin({}));
+    const handleRemove = () => {
+        dispatch(remove({ heapType: 'MIN' }));
         setHeap(minHeap);
         setKey(minHeap.heap.length.toString());
     }
 
     const handleDeleteHeap = () => {
-        dispatch(deleteHeap({}));
+        dispatch(deleteHeap({ heapType: 'MIN' }));
         setHeap(minHeap);
         setKey(minHeap.heap.length.toString());
     }
@@ -41,15 +41,16 @@ const MinHeapComponent = () => {
     }
 
     return (
-        <>
+        <div className="heapContainer">
+            <h1>Min Heap</h1>
             <HeapArray {...heapProps} />
             <div id="minHeapButtons" className="minHeapButtons">
                 <button id="insertRandomButton" onClick={() => handleInsertRandom()}>Insert Random</button>
-                <button id="deleteMinButton" onClick={() => handleDeleteMin()}>Delete Min</button>
+                <button id="deleteMinButton" onClick={() => handleRemove()}>Delete Min</button>
                 <button id="deleteHeapButton" onClick={() => handleDeleteHeap()}>Delete Heap</button>
             </div>
             <HeapTree {...heapProps} />
-        </>
+        </div>
 
     )
 }

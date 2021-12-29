@@ -6,10 +6,11 @@ import { ElementDefinition, ElementsDefinition } from 'cytoscape';
 function nodesAndEdges(inputHeap: Heap): ElementDefinition[] {
   const { heap } = inputHeap;
   const step = 550 / heap.length;
+  const start = 300 - (step * (heap.length - 1) / 2)
   const nodes: ElementDefinition[] = [];
   const edges: ElementDefinition[] = [];
   for (let i = 0; i < heap.length; i++) {
-    const currNode = { data: { id: (i).toString(), label: `${heap[i]}` }, position: { x: i * step + 50, y: 50 } }
+    const currNode = { data: { id: (i).toString(), label: `${heap[i]}` }, position: { x: start + i * step, y: 50 } }
     nodes.push(currNode);
     if (i > 0) {
       edges.push({ data: { source: `${i - 1}`, target: `${i}`, label: `Edge from ${i - 1} to ${i}` } })

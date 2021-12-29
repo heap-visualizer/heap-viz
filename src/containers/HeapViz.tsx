@@ -3,8 +3,9 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 import SavedProjects from '../components/SavedProjects';
 import { useAppSelector } from '../utils/hooks';
+import MaxHeapComponent from './MaxHeap';
+import MinHeapComponent from './MinHeap';
 import OptionsPanel from './OptionsPanel';
-import VizSpace from './VizSpace';
 
 const HeapViz = () => {
     const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn)
@@ -16,8 +17,12 @@ const HeapViz = () => {
                 <OptionsPanel />
             </div>
             <div className="vizContainer">
-            <VizSpace />
-            <VizSpace />
+                <div>
+                    <MinHeapComponent />
+                </div>
+                <div>
+                    <MaxHeapComponent />
+                </div>
             </div>
             {/* {!isLoggedIn && <Navigate to='/'/>} */}
         </div>

@@ -4,17 +4,13 @@ import { LoginPage } from './LoginPage';
 import { RegisterPage } from './SignUpPage';
 
 function LandingPage() {
-  const [changeToFormDisplay, setChangeToFormDisplay] = useState(false);
+  const [changeToFormDisplay, setChangeToFormDisplay] = useState(true);
   const [formToDisplay, setFormToDisplay] = useState('login');
 
   const handleStartNow = () => {
     setChangeToFormDisplay(true);
   };
 
-  const handleBackButton = () => {
-    setChangeToFormDisplay(false);
-    setFormToDisplay('login');
-  };
   function guestLogin() {
     fetch('/auth/login', {
       method: 'POST',
@@ -29,20 +25,7 @@ function LandingPage() {
 
   return (
     <div className="grid-container">
-      {
-        <div>
-          <Link to="/">
-            <button
-              className="back-btn"
-              type="button"
-              onClick={handleBackButton}
-            >
-              Back
-            </button>
-          </Link>
-        </div>
-      }
-
+      
       {!changeToFormDisplay && (
         <div className={'rightWrapper'}>
           <div className="buttonDiv">

@@ -8,7 +8,6 @@ import { useAppDispatch, useAppSelector } from '../utils/hooks';
 
 const MinHeapComponent = () => {
 
-    const { currentArray } = useAppSelector((state) => state.visualization);
     const { minHeap } = useAppSelector((state) => state.visualization);
     const [heap, setHeap] = useState(minHeap);
     const [key, setKey] = useState(heap.heap.length.toString()); // think about the ways to do this.
@@ -23,17 +22,17 @@ const MinHeapComponent = () => {
         setHeap(minHeap) // update state on our container to the new global state
         setKey(minHeap.heap.length.toString()); // update the key prop that we're passing down
     }
-    
+
     const handleDeleteMin = () => {
         dispatch(deleteMin({}));
         setHeap(minHeap);
-        setKey(minHeap.heap.length.toString()); 
+        setKey(minHeap.heap.length.toString());
     }
 
     const handleDeleteHeap = () => {
         dispatch(deleteHeap({}));
         setHeap(minHeap);
-        setKey(minHeap.heap.length.toString()); 
+        setKey(minHeap.heap.length.toString());
     }
 
     const heapProps: HeapComponentProps = {
@@ -42,13 +41,15 @@ const MinHeapComponent = () => {
     }
 
     return (
-        <div id="minHeapButtons" className="minHeapButtons">
-            <button id="insertRandomButton" onClick={() => handleInsertRandom()}>Insert Random</button>
-            <button id="deleteMinButton" onClick={() => handleDeleteMin()}>Delete Min</button>
-            <button id="deleteHeapButton" onClick={() => handleDeleteHeap()}>Delete Heap</button>
-            <HeapArray {...heapProps}/>
-            <HeapTree {...heapProps}/>
-        </div>
+        <>
+            <HeapArray {...heapProps} />
+            <div id="minHeapButtons" className="minHeapButtons">
+                <button id="insertRandomButton" onClick={() => handleInsertRandom()}>Insert Random</button>
+                <button id="deleteMinButton" onClick={() => handleDeleteMin()}>Delete Min</button>
+                <button id="deleteHeapButton" onClick={() => handleDeleteHeap()}>Delete Heap</button>
+            </div>
+            <HeapTree {...heapProps} />
+        </>
 
     )
 }

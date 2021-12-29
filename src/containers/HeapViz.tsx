@@ -11,9 +11,14 @@ const HeapViz = () => {
     return (
 
         <div id="heapViz" className="heapViz">
-            <SavedProjects />
+            <div className="heapVizNav">
+                <SavedProjects />
+                <OptionsPanel />
+            </div>
+            <div className="vizContainer">
             <VizSpace />
-            <OptionsPanel />
+            <VizSpace />
+            </div>
             {/* {!isLoggedIn && <Navigate to='/'/>} */}
         </div>
     )

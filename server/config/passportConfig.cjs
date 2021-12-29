@@ -1,3 +1,4 @@
+import passport from 'passport';
 import passportLocal from 'passport-local';
 import bcrypt from 'bcrypt';
 import User from '../models/user';
@@ -14,7 +15,7 @@ function initialize(passport) {
           return done(null, false, { message: 'User does not exist' });
         }
 
-        bcrypt.compare(password, user.pasword, (err, isMatch) => {
+        bcrypt.compare(password, user.password, (err, isMatch) => {
           if (err) throw err;
           if (isMatch) {
             return done(null, user);
@@ -38,7 +39,7 @@ function initialize(passport) {
   passport.serializeUser((user, done) => done(null, user.id));
 
   passport.deserializeUser(function (id, done) {
-    user.findById(id, function (err, user) {
+    User.findById(id, function (err, user) {
       done(err, user);
     });
   });

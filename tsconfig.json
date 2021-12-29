@@ -2,6 +2,7 @@
   "compilerOptions": {
     "outDir": "/build/",
     "noImplicitAny": true,
+    "noImplicitThis": true,
     "module": "commonjs",
     "target": "es6",
     "jsx": "react",
@@ -10,7 +11,7 @@
     "moduleResolution": "node",
     "lib": ["es6", "DOM"],
     "esModuleInterop": true,
-
+    "strictNullChecks": true,
   },
   // "include": ["src", "import-png.d.ts"]
 }

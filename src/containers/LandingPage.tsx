@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
-import { LoginPage } from './LoginPage'
-import { RegisterPage } from './SignUpPage'
-
-
+import { LoginPage } from './LoginPage';
+import { RegisterPage } from './SignUpPage';
 
 function LandingPage() {
   const [changeToFormDisplay, setChangeToFormDisplay] = useState(false);
@@ -11,12 +9,12 @@ function LandingPage() {
 
   const handleStartNow = () => {
     setChangeToFormDisplay(true);
-  }
+  };
 
   const handleBackButton = () => {
     setChangeToFormDisplay(false);
     setFormToDisplay('login');
-  }
+  };
   function guestLogin() {
     fetch('/auth/login', {
       method: 'POST',
@@ -30,36 +28,44 @@ function LandingPage() {
   const [guest, setGuest] = useState(false); // TODO change
 
   return (
-    <div className='grid-container'>
+    <div className="grid-container">
       {
         <div>
-          <Link to='/'>
+          <Link to="/">
             <button
-              className='neon-button'
-              type="button" onClick={handleBackButton}>Back
+              className="back-btn"
+              type="button"
+              onClick={handleBackButton}
+            >
+              Back
             </button>
           </Link>
         </div>
       }
 
-      {
-        !changeToFormDisplay && (
-          <div className={"rightWrapper"}>
-            <div className="buttonDiv">
-              <button type='button' className='neon-button' onClick={handleStartNow}>
-                Login
-              </button>
-              <button type='button' className='neon-button' onClick={guestLogin}>
-                Free demo
-              </button>
-            </div>
+      {!changeToFormDisplay && (
+        <div className={'rightWrapper'}>
+          <div className="buttonDiv">
+            <button
+              type="button"
+              className="login-btn"
+              onClick={handleStartNow}
+            >
+              Login
+            </button>
+            <button type="button" className="demo-btn" onClick={guestLogin}>
+              Free demo
+            </button>
           </div>
-        )}
+        </div>
+      )}
 
-      {((changeToFormDisplay &&
-        formToDisplay === 'login') && (<LoginPage setFormToDisplay={setFormToDisplay} />)) ||
-        ((changeToFormDisplay &&
-          formToDisplay === 'register') && (<RegisterPage setFormToDisplay={setFormToDisplay} />))}
+      {(changeToFormDisplay && formToDisplay === 'login' && (
+        <LoginPage setFormToDisplay={setFormToDisplay} />
+      )) ||
+        (changeToFormDisplay && formToDisplay === 'register' && (
+          <RegisterPage setFormToDisplay={setFormToDisplay} />
+        ))}
       {guest && <Navigate to="/main" />}
     </div>
   );

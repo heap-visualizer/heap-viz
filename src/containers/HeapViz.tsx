@@ -8,26 +8,29 @@ import MinHeapComponent from './MinHeap';
 import OptionsPanel from './OptionsPanel';
 
 const HeapViz = () => {
-    const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn)
-    return (
-
-        <div id="heapViz" className="heapViz">
-            <div className="heapVizNav">
-                <SavedProjects />
-                <OptionsPanel />
-            </div>
-            <div className="vizContainer">
-                <div>
-                    <MinHeapComponent />
-                </div>
-                <div>
-                    <MaxHeapComponent />
-                </div>
-            </div>
-            {!isLoggedIn && <Navigate to='/'/>}
+  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
+  return (
+    <div id="heapViz" className="heapViz">
+      <div className="heapVizNav">
+        <OptionsPanel />
+      </div>
+      <div className="mainCols">
+        <div className="saved">
+          <SavedProjects />
         </div>
-    )
-}
 
+        <div className="vizContainer">
+          <div>
+            <MinHeapComponent />
+          </div>
+          <div>
+            <MaxHeapComponent />
+          </div>
+        </div>
+      </div>
+      {!isLoggedIn && <Navigate to="/" />}
+    </div>
+  );
+};
 
 export default HeapViz;

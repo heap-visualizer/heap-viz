@@ -7,6 +7,8 @@ import HeapTree from '../components/HeapTree';
 
 const MaxHeap = () => {
 
+    const [heap, addToHeap] = useState(inputHeap);
+
     return (
         <div id = "maxHeapButtons" className = "maxHeapButtons">
             {/* <Button variant = "cointained">Insert:</Button> */}

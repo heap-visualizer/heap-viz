@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../hooks";
+import React, { useState, useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../utils/hooks';
 import { Link, Navigate } from 'react-router-dom';
 // import formik and yup libraries for form validation
-import { Formik, Field, Form, ErrorMessage } from "formik";
-import * as Yup from "yup";
+import { Formik, Field, Form, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 
 // import async thunk - login
-import { login, User } from "../slices/authentication";
+import { login, User } from '../slices/authentication';
 // import reducer - clearMessage
-import { clearMessage } from "../slices/messages";
+import { clearMessage } from '../slices/messages';
 
-export const LoginPage = (props: any) => { // disable login submit button if loading
+export const LoginPage = (props: any) => {
+  // disable login submit button if loading
   const { setFormToDisplay } = props;
   const [loading, setLoading] = useState(false);
   const [redirect, setRedirect] = useState(false);
-
 
   // access pieces of state from store
   const { isLoggedIn } = useAppSelector((state) => state.auth);
@@ -29,44 +29,47 @@ export const LoginPage = (props: any) => { // disable login submit button if loa
   }, [dispatch]);
 
   const initialValues = {
-    username: "",
-    password: ""
+    username: '',
+    password: '',
   };
 
   const validationSchema = Yup.object().shape({
-    username: Yup.string().required("This field is required!"),
-    password: Yup.string().required("This field is required!"),
+    username: Yup.string().required('This field is required!'),
+    password: Yup.string().required('This field is required!'),
   });
 
-  const handleLogin = (formValue: User) => { // take in user's provided username and password
+  const handleLogin = (formValue: User) => {
+    // take in user's provided username and password
     const { username, password } = formValue;
     // disable login button by set loading to true
     setLoading(true);
-    dispatch(login({ username, password })).unwrap().then(() => {
-      setRedirect(true);
-    }).catch(() => { // if login fails, enable login button again
-      setLoading(false);
-    });
+    dispatch(login({ username, password }))
+      .unwrap()
+      .then((data) => {
+        console.log('DATA', data);
+        if (data.username) {
+          setRedirect(true);
+        } else throw new Error('login failed');
+      })
+      .catch(() => {
+        // if login fails, enable login button again
+        setLoading(false);
+      });
   };
-
-  if (isLoggedIn) {
-    // TODO what is this doing???
-  }
 
   const handleFormDisplay = () => setFormToDisplay('register');
 
+  
   return (
     <div className="form-box">
-
-      <Formik initialValues={initialValues}
+      <Formik
+        initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={handleLogin}
       //handlelogin dispatches login() thunk
       >
         <Form>
-          <h2 id="sign-in-text">
-            Sign In
-          </h2>
+          <h2 id="sign-in-text">Sign In</h2>
           <div className="form-group">
             <label htmlFor="username">Username</label>
             <Field
@@ -97,32 +100,34 @@ export const LoginPage = (props: any) => { // disable login submit button if loa
             />
           </div>
 
-          <button type="submit" id="loginBtn"
-            disabled={loading}>
-            {
-              loading && (
-                <div className="spinner-border spinner-border-lg"></div>
-              )
-            }
+          <button type="submit" id="loginBtn" disabled={loading}>
+            {loading && (
+              <div className="spinner-border spinner-border-lg"></div>
+            )}
             Login
           </button>
-
         </Form>
       </Formik>
       <p className="form-group">
-        Don't have account? <button type="submit" className="neon-button" onClick={handleFormDisplay} >Register</button>
+        Don't have account?{' '}
+        <button
+          type="submit"
+          className="neon-button"
+          onClick={handleFormDisplay}
+        >
+          Register
+        </button>
       </p>
 
-      {
-        message && (
-          <div className="form-group">
-            <div className="alert alert-danger" role="alert">
-              {message} </div>
+      {message && (
+        <div className="form-group">
+          <div className="alert alert-danger" role="alert">
+            {message}{' '}
           </div>
-        )
-      }
+        </div>
+      )}
 
-      {redirect && <Navigate to='/main' />}
+      {redirect && <Navigate to="/main" />}
     </div>
   );
 };

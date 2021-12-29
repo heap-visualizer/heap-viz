@@ -1,8 +1,13 @@
 // import path from 'path/posix';
 import React from 'react';
 import { render } from 'react-dom';
+import { 
+  BrowserRouter,
+  Routes,
+  Route
+} from 'react-router-dom';
 import App from './App'
-import store from './store'
+import store from './utils/store'
 import { Provider } from 'react-redux'
 
 render(

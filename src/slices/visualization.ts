@@ -6,13 +6,19 @@ import { useAppSelector } from "../utils/hooks";
 //create async thunks
 import type { RootState } from "../utils/store";
 import axios from "axios";
+import { User } from "./authentication";
+import { Heap, MinHeap } from "../heap_classes/Heap";
 
 export interface visualizationState {
   storedArrays: number[][];
+  currentArray: number[];
+  minHeap: Heap;
 }
 
 const initialState: visualizationState = {
   storedArrays: [],
+  currentArray: [1, 2, 3, 4, 5],
+  minHeap: new MinHeap([10, 20, 30, 40, 50]),
 };
 
 const visualizationSlice = createSlice({
@@ -20,6 +26,15 @@ const visualizationSlice = createSlice({
   initialState,
   reducers: {
     // if needed add here
+    insertRandom: (state, action) => {
+      state.minHeap.insert(action.payload.number);
+    },
+    deleteMin: (state, _action) => {
+      state.minHeap.remove();
+    },
+    deleteHeap: (state, _action) => {
+      state.minHeap.heap = [];
+    }
   },
   extraReducers: (builder) => {
     //extraReducers allows createSlice to respond to other action types besides the types it has generated
@@ -32,7 +47,7 @@ const visualizationSlice = createSlice({
 export const storeArray = createAsyncThunk(
   "visualization/storeArray", //action type
   async (user: User, thunkAPI) => {
-    const {username, storedArrays} = user;
+    const { username, storedArrays } = user;
     return axios
       .post(`/saveArrays/${username}`, { arrays: storedArrays })
       .then((response: any) => {
@@ -44,4 +59,5 @@ export const storeArray = createAsyncThunk(
   }
 );
 
+export const { insertRandom, deleteMin, deleteHeap } = visualizationSlice.actions;
 export default visualizationSlice.reducer;

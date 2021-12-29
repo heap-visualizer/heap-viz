@@ -2,10 +2,12 @@ import { configureStore } from '@reduxjs/toolkit';
 //import reducers
 import authReducer from '../slices/authentication';
 import messageReducer from '../slices/messages';
+import visualizationReducer from '../slices/visualization';
 //bundle reducers 
 const reducer = {
   auth: authReducer,
-  message: messageReducer
+  message: messageReducer,
+  visualization: visualizationReducer,
 }
 
 const store = configureStore({

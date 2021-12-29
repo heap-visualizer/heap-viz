@@ -1,20 +1,22 @@
 //standalone runtime for Regenerator-compiled generator and async functions (DO NOT DELETE)
-import regeneratorRuntime from "regenerator-runtime";
+import regeneratorRuntime from 'regenerator-runtime';
 //createAsyncThunk returns a standard Redux thunk action creator
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 //use authService to make async requests - authService.register, login, logout
-import { authService } from "../services/auth_service";
+import { authService } from '../services/auth_service';
 // setMessage dispatched if authentication is successful or fails
-import { setMessage } from "./messages";
+import { setMessage } from './messages';
 //create async thunks
-import type { RootState } from "../utils/store";
+import type { RootState } from '../utils/store';
 
-const user: User = JSON.parse(localStorage.getItem("user"));
+// technically not *supposed* to do this in general but for our purposes it's fixing the error
+// "as string" essentially says that localStorage.getItem will be passed a string
+const user: User = JSON.parse(localStorage.getItem('user') as string);
 
 export interface User {
   _id?: string;
   username: string;
-  password: string;
+  password: string | null;
   storedArrays?: number[][];
 }
 
@@ -27,10 +29,10 @@ export interface LoggedInState {
 //set initial state here
 const initialState: LoggedInState = user
   ? { isLoggedIn: true, user }
-  : { isLoggedIn: false, user: null };
+  : { isLoggedIn: false, user };
 
 const authSlice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState,
   reducers: {
     // if needed add here
@@ -49,17 +51,17 @@ const authSlice = createSlice({
     });
     builder.addCase(login.rejected, (state, _action) => {
       state.isLoggedIn = false;
-      state.user = null;
+      state.user = { username: '', password: null };
     });
     builder.addCase(logout.fulfilled, (state, _action) => {
       state.isLoggedIn = false;
-      state.user = null;
+      state.user = { username: '', password: null };
     });
   },
 });
 
 export const register = createAsyncThunk(
-  "auth/register", //action type
+  'auth/register', //action type
   async (
     //payloadCreator callback that returns a promise
     user: User,
@@ -67,7 +69,7 @@ export const register = createAsyncThunk(
   ) => {
     try {
       const { username, password } = user;
-      const response = await authService.register(username, password);
+      const response = await authService.register(username, password as string);
       thunkAPI.dispatch(setMessage(response.data.message));
       return response.data; //contains our response from server
     } catch (error) {
@@ -84,11 +86,11 @@ export const register = createAsyncThunk(
 );
 
 export const login = createAsyncThunk(
-  "auth/login",
+  'auth/login',
   async (user: User, thunkAPI) => {
     try {
       const { username, password } = user;
-      const data = await authService.login(username, password);
+      const data = await authService.login(username, password as string);
       return data as User;
     } catch (error) {
       const message =
@@ -103,7 +105,7 @@ export const login = createAsyncThunk(
   }
 );
 
-export const logout = createAsyncThunk("auth/logout", async () => {
+export const logout = createAsyncThunk('auth/logout', async () => {
   await authService.logout();
 });
 

@@ -11,10 +11,7 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route
-          path={'/'}
-          element={<HeapViz />} // change back to landing page
-        />
+        <Route path={'/'} element={<LandingPage />} />
         <Route path={'/main'} element={<HeapViz />} />
       </Routes>
     </Router>

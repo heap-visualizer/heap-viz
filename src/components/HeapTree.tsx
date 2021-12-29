@@ -21,11 +21,12 @@ function nodesAndEdges(inputHeap: Heap): ElementDefinition[] {
     const parent = Math.floor((i - 1) / 2);
     const parentNode = nodes[parent];
     const { position } = parentNode;
-    const xpos = position.x + (shift * range[parent]) / 2;
+    const xpos = position ? position.x + (shift * range[parent]) / 2 : middle;
+    const ypos = position ? position.y + 500 / levels : 50;
     range.push(range[parent] / 2);
     const currNode = {
       data: { id: i.toString(), label: `${heap[i]}` },
-      position: { x: xpos, y: position.y + 500 / levels },
+      position: { x: xpos, y: ypos },
     };
     nodes.push(currNode);
 

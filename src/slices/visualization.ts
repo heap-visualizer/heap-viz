@@ -1,18 +1,18 @@
 //standalone runtime for Regenerator-compiled generator and async functions (DO NOT DELETE)
-import regeneratorRuntime from "regenerator-runtime";
+import regeneratorRuntime from 'regenerator-runtime';
 //createAsyncThunk returns a standard Redux thunk action creator
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { useAppSelector } from "../utils/hooks";
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { useAppSelector } from '../utils/hooks';
 //create async thunks
-import type { RootState } from "../utils/store";
-import axios from "axios";
-import { User } from "./authentication";
-import { Heap, MinHeap } from "../heap_classes/Heap";
+import type { RootState } from '../utils/store';
+import axios from 'axios';
+import { User } from './authentication';
+import { Heap, MinHeap } from '../heap_classes/Heap';
 
 export interface visualizationState {
   storedArrays: number[][];
   currentArray: number[];
-  minHeap: Heap;
+  minHeap: MinHeap;
 }
 
 const initialState: visualizationState = {
@@ -22,7 +22,7 @@ const initialState: visualizationState = {
 };
 
 const visualizationSlice = createSlice({
-  name: "visualization",
+  name: 'visualization',
   initialState,
   reducers: {
     // if needed add here
@@ -34,7 +34,7 @@ const visualizationSlice = createSlice({
     },
     deleteHeap: (state, _action) => {
       state.minHeap.heap = [];
-    }
+    },
   },
   extraReducers: (builder) => {
     //extraReducers allows createSlice to respond to other action types besides the types it has generated
@@ -45,7 +45,7 @@ const visualizationSlice = createSlice({
 });
 
 export const storeArray = createAsyncThunk(
-  "visualization/storeArray", //action type
+  'visualization/storeArray', //action type
   async (user: User, thunkAPI) => {
     const { username, storedArrays } = user;
     return axios
@@ -59,5 +59,6 @@ export const storeArray = createAsyncThunk(
   }
 );
 
-export const { insertRandom, deleteMin, deleteHeap } = visualizationSlice.actions;
+export const { insertRandom, deleteMin, deleteHeap } =
+  visualizationSlice.actions;
 export default visualizationSlice.reducer;

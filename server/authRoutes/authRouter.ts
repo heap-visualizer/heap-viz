@@ -2,6 +2,7 @@ import express from 'express';
 const authRouter = express.Router();
 import bcrypt from 'bcrypt';
 import User from '../models/user';
+import { nextTick } from 'process';
 // import authControllers from '../config/authControllers.cjs';
 // import passport from 'passport';
 // import '../config/passportConfig.cjs';
@@ -19,7 +20,9 @@ authRouter.post('/login', async (req, res) => {
       res.status(401).send('Wrong password!');
     }
     return res.status(200).json({ ...user._doc, password: null });
-  } catch (error) {}
+  } catch (error) {
+    res.status(401).send(error);
+  }
 });
 
 authRouter.post('/signup', async (req, res) => {

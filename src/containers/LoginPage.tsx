@@ -56,10 +56,6 @@ export const LoginPage = (props: any) => {
       });
   };
 
-  if (isLoggedIn) {
-    // TODO what is this doing???
-  }
-
   const handleFormDisplay = () => setFormToDisplay('register');
 
   return (

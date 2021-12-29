@@ -2,6 +2,7 @@ import express from 'express';
 const authRouter = express.Router();
 import bcrypt from 'bcrypt';
 import User from '../models/user';
+// import authControllers from '../config/authControllers.cjs';
 // import passport from 'passport';
 // import '../config/passportConfig.cjs';
 // import authControllers from '../controllers/authControllers.cjs';

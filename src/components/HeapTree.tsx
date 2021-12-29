@@ -26,9 +26,7 @@ function nodesAndEdges(inputHeap: Heap): ElementDefinition[] {
   return nodes.concat(edges);
 }
 
-const HeapTree = (array: number[] = []) => {
-  const heap = new MinHeap(array);
-
+const HeapTree = (heap: Heap) => {
   const elements = nodesAndEdges(heap);
 
   return (

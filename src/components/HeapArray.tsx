@@ -2,7 +2,6 @@ import React from 'react';
 import CytoscapeComponent from 'react-cytoscapejs';
 import { Heap, MinHeap } from '../heap_classes/Heap';
 import { ElementDefinition, ElementsDefinition } from 'cytoscape';
-import { array } from 'yup/lib/locale';
 
 function nodesAndEdges(inputHeap: Heap): ElementDefinition[] {
   const { heap } = inputHeap;
@@ -12,16 +11,14 @@ function nodesAndEdges(inputHeap: Heap): ElementDefinition[] {
   for (let i = 0; i < heap.length; i++) {
     const currNode = { data: { id: (i).toString(), label: `${heap[i]}` }, position: { x: i * step + 50, y: 50 } }
     nodes.push(currNode);
-    if(i > 0) {
+    if (i > 0) {
       edges.push({ data: { source: `${i - 1}`, target: `${i}`, label: `Edge from ${i - 1} to ${i}` } })
     }
   }
   return nodes.concat(edges);
 }
 
-const HeapArray = (array: number[] = []) => {
-  const heap = new MinHeap(array);
-
+const HeapArray = (heap: Heap) => {
   const elements = nodesAndEdges(heap);
 
   return (

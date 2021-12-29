@@ -1,9 +1,9 @@
 // import path from 'path/posix';
 import React, { useEffect, useState } from 'react';
-import HeapArray, { HeapArrayProps } from '../components/HeapArray';
+import HeapArray, { HeapComponentProps } from '../components/HeapArray';
 import HeapTree from '../components/HeapTree';
 import { Heap, MinHeap } from '../heap_classes/Heap';
-import { insertRandom } from '../slices/visualization';
+import { deleteHeap, deleteMin, insertRandom } from '../slices/visualization';
 import { useAppDispatch, useAppSelector } from '../utils/hooks';
 
 const MinHeapComponent = () => {
@@ -18,31 +18,36 @@ const MinHeapComponent = () => {
     const dispatch = useAppDispatch();
 
     const handleInsertRandom = () => {
-        const add = Math.floor(Math.random() * minHeap.heap.length + 1);
+        const add = Math.floor(Math.random() * 100);
         dispatch(insertRandom({ number: add }));
-        setHeap(minHeap)
-        setKey(minHeap.heap.length.toString());
-        console.log('from container', heap);
-        // console.log('MINHEAP', minHeap)
+        setHeap(minHeap) // update state on our container to the new global state
+        setKey(minHeap.heap.length.toString()); // update the key prop that we're passing down
+    }
+    
+    const handleDeleteMin = () => {
+        dispatch(deleteMin({}));
+        setHeap(minHeap);
+        setKey(minHeap.heap.length.toString()); 
     }
 
-    useEffect(() => { 
-        setHeap(minHeap) 
-    }, [minHeap]);
+    const handleDeleteHeap = () => {
+        dispatch(deleteHeap({}));
+        setHeap(minHeap);
+        setKey(minHeap.heap.length.toString()); 
+    }
 
-    const heapProps: HeapArrayProps = {
+    const heapProps: HeapComponentProps = {
         inputHeap: heap,
         length: key,
     }
-    console.log('props', heapProps);
 
     return (
         <div id="minHeapButtons" className="minHeapButtons">
             <button id="insertRandomButton" onClick={() => handleInsertRandom()}>Insert Random</button>
-            <button id="deleteMinButton" onClick={() => { }}>Delete Min</button>
-            <button id="deleteHeapButton" onClick={() => { }}>Delete Heap</button>
+            <button id="deleteMinButton" onClick={() => handleDeleteMin()}>Delete Min</button>
+            <button id="deleteHeapButton" onClick={() => handleDeleteHeap()}>Delete Heap</button>
             <HeapArray {...heapProps}/>
-            {HeapTree(heap)}
+            <HeapTree {...heapProps}/>
         </div>
 
     )

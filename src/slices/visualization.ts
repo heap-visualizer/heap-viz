@@ -18,7 +18,7 @@ export interface visualizationState {
 const initialState: visualizationState = {
   storedArrays: [],
   currentArray: [1, 2, 3, 4, 5],
-  minHeap: new MinHeap([1, 2, 3, 4, 5]),
+  minHeap: new MinHeap([10, 20, 30, 40, 50]),
 };
 
 const visualizationSlice = createSlice({
@@ -28,6 +28,12 @@ const visualizationSlice = createSlice({
     // if needed add here
     insertRandom: (state, action) => {
       state.minHeap.insert(action.payload.number);
+    },
+    deleteMin: (state, _action) => {
+      state.minHeap.remove();
+    },
+    deleteHeap: (state, _action) => {
+      state.minHeap.heap = [];
     }
   },
   extraReducers: (builder) => {
@@ -53,5 +59,5 @@ export const storeArray = createAsyncThunk(
   }
 );
 
-export const { insertRandom } = visualizationSlice.actions;
+export const { insertRandom, deleteMin, deleteHeap } = visualizationSlice.actions;
 export default visualizationSlice.reducer;

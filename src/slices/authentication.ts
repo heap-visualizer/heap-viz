@@ -11,7 +11,7 @@ import type { RootState } from '../utils/store';
 
 // technically not *supposed* to do this in general but for our purposes it's fixing the error
 // "as string" essentially says that localStorage.getItem will be passed a string
-const user: User = JSON.parse(localStorage.getItem('user') as string);
+const user: User = { username: 'yogi', password: null, storedArrays: [[1, 2, 3, 4], [4, 5, 6, 7], [5, 6, 7, 8]] }  //JSON.parse(localStorage.getItem('user') as string);
 
 export interface User {
   _id?: string;

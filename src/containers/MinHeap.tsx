@@ -12,6 +12,9 @@ const MinHeapComponent = () => {
     const [heap, setHeap] = useState(minHeap);
     const [key, setKey] = useState(heap.heap.length.toString()); // think about the ways to do this.
 
+    useEffect(() => {
+        setHeap(minHeap);
+    }, [minHeap]);
 
     // dispatch method to dispatch an action and trigger a state change
     const dispatch = useAppDispatch();

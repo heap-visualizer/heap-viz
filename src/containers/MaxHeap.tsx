@@ -1,5 +1,5 @@
 // import path from 'path/posix';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import HeapArray, { HeapComponentProps } from '../components/HeapArray';
 import HeapTree from '../components/HeapTree';
 import { MaxHeap, MinHeap } from '../heap_classes/Heap';
@@ -11,6 +11,10 @@ const MaxHeapComponent = () => {
     const { maxHeap } = useAppSelector((state) => state.visualization);
     const [heap, setHeap] = useState(maxHeap);
     const [key, setKey] = useState(heap.heap.length.toString()); // think about the ways to do this.
+
+    useEffect(() => {
+        setHeap(maxHeap);
+    }, [maxHeap]);
 
     // dispatch method to dispatch an action and trigger a state change
     const dispatch = useAppDispatch();

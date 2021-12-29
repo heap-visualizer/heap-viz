@@ -44,6 +44,15 @@ const visualizationSlice = createSlice({
         state.minHeap.heap = [] :
         state.maxHeap.heap = [];
     },
+    updateMinHeap: (state, action) => {
+      const { arr } = action.payload;
+      state.minHeap = new MinHeap(arr);
+    },
+    updateMaxHeap: (state, action) => {
+      const { arr } = action.payload;
+      state.maxHeap = new MaxHeap(arr);
+    }
+    
   },
   extraReducers: (builder) => {
     //extraReducers allows createSlice to respond to other action types besides the types it has generated
@@ -68,6 +77,6 @@ export const storeArray = createAsyncThunk(
   }
 );
 
-export const { insertRandom, remove, deleteHeap } =
+export const { insertRandom, remove, deleteHeap, updateMinHeap, updateMaxHeap } =
   visualizationSlice.actions;
 export default visualizationSlice.reducer;

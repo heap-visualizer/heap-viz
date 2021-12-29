@@ -32,12 +32,18 @@ const HeapTree = (inputHeap: Heap) => {
 
   const [heap, setHeap] = useState(inputHeap);
   // This will launch only if propName value has chaged.
-  useEffect(() => { setHeap(inputHeap) }, [inputHeap]);
+  useEffect(() => { 
+    console.log('from component', inputHeap);
+    setHeap(inputHeap) 
+  }, [inputHeap]);
 
   const elements = nodesAndEdges(heap);
 
   return (
+    <>
+    <div>length = {heap.heap.length}</div>
     <CytoscapeComponent key={heap.heap.length.toString()} elements={elements} style={{ width: '600px', height: '600px' }} />
+    </>
   )
 }
 

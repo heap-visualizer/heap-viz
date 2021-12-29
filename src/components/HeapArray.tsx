@@ -18,8 +18,15 @@ function nodesAndEdges(inputHeap: Heap): ElementDefinition[] {
   return nodes.concat(edges);
 }
 
-const HeapArray = (inputHeap: Heap) => {
+export interface HeapArrayProps {
+  inputHeap: Heap;
+  length: string;
+}
 
+const HeapArray = (props: HeapArrayProps) => {
+
+  console.log('component', props);
+  const { inputHeap, length } = props;
   const [heap, setHeap] = useState(inputHeap);
   // This will launch only if propName value has chaged.
   useEffect(() => { setHeap(inputHeap) }, [inputHeap]);
@@ -27,7 +34,8 @@ const HeapArray = (inputHeap: Heap) => {
   const elements = nodesAndEdges(heap);
 
   return (
-    <CytoscapeComponent key={heap.heap.length.toString()} elements={elements} style={{ width: '600px', height: '100px' }} />
+    <><CytoscapeComponent key={length} elements={elements} style={{ width: '600px', height: '100px' }} />
+    <div>length = {length}</div></>
   )
 }
 

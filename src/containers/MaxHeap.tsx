@@ -23,8 +23,8 @@ const MaxHeapComponent = () => {
             {/* <Button id = "insertRandomButton" onClick = {() => {}} variant = "cointained">Insert Random</Button>
             <Button id = "deleteMinButton" onClick = {() => {}} variant = "cointained">Delete Min</Button>
             <Button id = "deleteHeapButton" onClick = {() => {}} variant = "cointained">Delete Heap</Button> */}
-            {HeapArray(heap)}
-            {HeapTree(heap)}
+            {/* {HeapArray(heap)} */}
+            {/* {HeapTree(heap)} */}
         </div>
 
     )

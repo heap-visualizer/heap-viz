@@ -1,3 +1,4 @@
+import { fabClasses } from '@mui/material';
 import React, { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { LoginPage } from './LoginPage'
@@ -6,7 +7,7 @@ import { RegisterPage } from './SignUpPage'
 
 
 function LandingPage() {
-  const [changeToFormDisplay, setChangeToFormDisplay] = useState(true);
+  const [changeToFormDisplay, setChangeToFormDisplay] = useState(false);
   const [formToDisplay, setFormToDisplay] = useState('login');
 
   const handleStartNow = () => {
@@ -14,7 +15,7 @@ function LandingPage() {
   }
 
   const handleBackButton = () => {
-    setChangeToFormDisplay(true);
+    setChangeToFormDisplay(false);
     setFormToDisplay('login');
   }
   function guestLogin() {
@@ -27,7 +28,7 @@ function LandingPage() {
       }
     });
   }
-  const [guest, setGuest] = useState(false);
+  const [guest, setGuest] = useState(false); // TODO change
 
   return (
     <div className='grid-container'>

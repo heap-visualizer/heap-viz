@@ -29,9 +29,9 @@ const OptionsPanel = () => {
 
     return (
         <div id = "optionsButtons" className = "optionsButtons">
-            <IconButton aria-label="save" onClick = {save}><SaveIcon/></IconButton>
+            {/* <IconButton aria-label="save"><SaveIcon/></IconButton>
             <IconButton aria-label="saveAs"><SaveAlt/></IconButton>
-            <IconButton aria-label="logout" onClick = {authService.logout}><Logout/></IconButton>
+            <IconButton aria-label="logout"><Logout/></IconButton> */}
             {/* <Button id = "newMinHeap" onClick = {() => {}} variant = "cointained">New Min Heap</Button> */}
             {/* <Button id = "newMaxHeap" onClick = {() => {}} variant = "cointained">New Max Heap</Button> */}
         </div>

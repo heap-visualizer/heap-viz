@@ -4,15 +4,14 @@ export interface Heap {
   buildHeap(array: number[]): number[];
 
   siftUp(start: number): number[];
-  
+
   siftDown(start: number, end: number): number[];
 
-  remove(): number;
+  remove(): number | undefined;
 
   insert(val: number): void;
 
   peek(): number;
-
 }
 
 export class MaxHeap implements Heap {

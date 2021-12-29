@@ -1,13 +1,10 @@
 import path from 'path';
-import express, { Request, Response, NextFunction } from 'express';
+import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 
 import passport from 'passport';
-import { Strategy as LocalStrategy } from 'passport-local';
-import User from './models/user';
-import bcrypt from 'bcrypt';
 import session from 'express-session';
 import flash from 'connect-flash';
 
@@ -24,44 +21,6 @@ const port = process.env.PORT || 3000;
 //         });
 // };
 //app.use('/', express.static(path.join(__dirname, '../src/index.html')))
-
-/*adding local strategy and user model
-adding local strategy for authentication */
-
-/*
-passport.use(
-  new LocalStrategy(function (username: String, password: string, done: any) {
-    User.findOne({ username: username }, function (err: Error, user: any) {
-      if (err) {
-        return done(err);
-      }
-      if (!user) {
-        return done(null, false, { message: 'Incorrect username.' });
-      }
-      bcrypt.compare(
-        password,
-        user.password,
-        (err: Error, isMatch: Boolean) => {
-          if (err) throw err;
-          if (isMatch) {
-            return done(null, user);
-          } else {
-            return done(null, false, { message: 'Incorrect password' });
-          }
-        }
-      );
-    });
-  })
-);
-
-passport.serializeUser((user, done) => done(null, user._id: any));
-
-passport.deserializeUser(function (id, done) {
-  User.findById(id, function (err: Error, user: any) {
-    done(err, user);
-  });
-});
-*/
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

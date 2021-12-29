@@ -1,0 +1,37 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.app {
+  background-color: whitesmoke;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid-container {
+  width: 500px;
+  background-color: red;
+  display: grid;
+  gap: 50px;
+}
+
+.rightWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+#heapViz {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+}

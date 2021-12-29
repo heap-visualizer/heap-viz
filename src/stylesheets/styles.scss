@@ -6,23 +6,59 @@ html {
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Cabin', sans-serif;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  color: #2d334a;
 }
 
 .app {
-  background-color: whitesmoke;
+  background-color: #fffffe;
   width: 100vw;
   height: 100vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: flex;
   justify-content: center;
   align-items: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .grid-container {
   width: 500px;
-  background-color: red;
+  background-color: #eff0f3;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
   display: grid;
   gap: 50px;
+  padding: 100px;
+}
+
+button {
+  padding: 10px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
+  border: solid 1px #5e636b;
+  background-color: #ff8e3c;
+  color: #272343;
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.15);
+}
+
+button:hover {
+  background-color: #d9376e;
+  padding: 11px;
+  border: none;
+  color: #272343;
+  cursor: pointer;
+}
+
+.form-control {
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
+  border: solid 1px #5e636b;
 }
 
 .rightWrapper {

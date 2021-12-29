@@ -1,3 +1,4 @@
+import { fabClasses } from '@mui/material';
 import React, { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { LoginPage } from './LoginPage'
@@ -27,7 +28,7 @@ function LandingPage() {
       }
     });
   }
-  const [guest, setGuest] = useState(true); // TODO change
+  const [guest, setGuest] = useState(false); // TODO change
 
   return (
     <div className='grid-container'>

@@ -1,4 +1,21 @@
-export class MaxHeap {
+export interface Heap {
+  heap: number[];
+
+  buildHeap(array: number[]): number[];
+
+  siftUp(start: number): number[];
+  
+  siftDown(start: number, end: number): number[];
+
+  remove(): number;
+
+  insert(val: number): void;
+
+  peek(): number;
+
+}
+
+export class MaxHeap implements Heap {
   heap: number[];
 
   constructor(array: number[] = []) {
@@ -65,7 +82,7 @@ export class MaxHeap {
   }
 }
 
-export class MinHeap {
+export class MinHeap implements Heap {
   heap: number[];
 
   constructor(array: number[] = []) {

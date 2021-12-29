@@ -52,6 +52,8 @@ app.get('/', (req, res) => {
 app.use('/auth', authRouter);
 app.post('/saveArrays/:name', UserController.saveArrays);
 app.get('/getArrays/:name', UserController.getArrays);
+app.patch('/saveArray/:name', UserController.saveArray);
+app.patch('/deleteArray/:name', UserController.deleteArray);
 
 mongoose
   .connect(

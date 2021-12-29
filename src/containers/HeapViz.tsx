@@ -24,7 +24,7 @@ const HeapViz = () => {
                     <MaxHeapComponent />
                 </div>
             </div>
-            {/* {!isLoggedIn && <Navigate to='/'/>} */}
+            {!isLoggedIn && <Navigate to='/'/>}
         </div>
     )
 }

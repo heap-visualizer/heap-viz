@@ -34,4 +34,13 @@ html {
   width: 100vw;
   height: 100vh;
   display: grid;
+  grid-template-areas:
+	// 'nav nav nav'
+	// 'left right right'
+	// 'left right right'
+  'header header header header header header'
+  'menu main main main right right'
+  'menu footer footer footer footer footer';
+	grid-gap: 0vh;
+  margin: 20px;
 }

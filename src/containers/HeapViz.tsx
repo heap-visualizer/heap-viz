@@ -14,7 +14,7 @@ const HeapViz = () => {
             <SavedProjects />
             <VizSpace />
             <OptionsPanel />
-            {!isLoggedIn && <Navigate to='/'/>}
+            {/* {!isLoggedIn && <Navigate to='/'/>} */}
         </div>
     )
 }

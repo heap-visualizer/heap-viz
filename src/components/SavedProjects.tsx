@@ -6,7 +6,7 @@ import { render } from 'react-dom';
 const SavedProjects = () => {
 
 return (
-    <p>goodbye</p>
+    <p>Saved Projects</p>
     )
 }
 

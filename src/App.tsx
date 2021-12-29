@@ -9,12 +9,14 @@ import './stylesheets/styles.scss';
 
 const App = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path={'/'} element={<LandingPage />} />
-        <Route path={'/main'} element={<HeapViz />} />
-      </Routes>
-    </Router>
+    <div className="app">
+      <Router>
+        <Routes>
+          <Route path={'/'} element={<LandingPage />} />
+          <Route path={'/main'} element={<HeapViz />} />
+        </Routes>
+      </Router>
+    </div>
   );
 };
 

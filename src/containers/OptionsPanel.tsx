@@ -10,25 +10,34 @@ import {authService} from '../services/auth_service';
 import {useAppSelector } from "../utils/hooks";
 
 const OptionsPanel = () => {
-    const save = (storedArrays: number[]) => {
-        const username = useAppSelector((state: any) => state.user.username)
+    const save = () => {
+        const username = useAppSelector((state: any) => state.auth.user.username)
+        const storedArrays = useAppSelector((state: any) => state.auth.user.storedArrays)
 
-        return axios
-            .post(`/saveArrays/:${username}`, {arrays: storedArrays})
-            .then((response: any) => {
-                if (response.data.accessToken) {
-                    localStorage.setItem('user', JSON.stringify(response.data));
-                }
-                return response.data;
-              })
-            .catch((error: any) => {
-                return error.message;
-            });
+        // return axios
+        //     .post(`/saveArrays/:${username}`, {arrays: storedArrays})
+        //     .then((response: any) => {
+        //         if (response.data.accessToken) {
+        //             localStorage.setItem('user', JSON.stringify(response.data));
+        //         }
+        //         return response.data;
+        //       })
+        //     .catch((error: any) => {
+        //         return error.message;
+        //     });
+        fetch(`/saveArrays/:${username}`, {
+            method: 'POST',
+            body: JSON.stringify({arrays: storedArrays}),
+          }).then((response) => {
+            if (response.status === 200) console.log(response);
+          }
     }
 
-
+    
     return (
         <div id = "optionsButtons" className = "optionsButtons">
+            <button type="submit" onClick={save}>Save</button>
+            {/* <button type="submit" onClick={() => {authService.logout()}}>Logout </button> */}
             {/* <IconButton aria-label="saveIcon" onClick = {save(localStorage.user.storedArrays)}><SaveIcon/></IconButton> */}
             {/* <IconButton aria-label="logout" onClick = {authService.logout}><Logout/></IconButton> */}
             {/* <Button id = "newMinHeap" onClick = {() => {}} variant = "cointained">New Min Heap</Button> */}

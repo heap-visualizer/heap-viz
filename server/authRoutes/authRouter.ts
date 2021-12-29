@@ -1,9 +1,53 @@
 import express from 'express';
 const authRouter = express.Router();
-import passport from 'passport';
 import bcrypt from 'bcrypt';
 import User from '../models/user';
 // import authControllers from '../config/authControllers.cjs';
+// import passport from 'passport';
+// import '../config/passportConfig.cjs';
+// import authControllers from '../controllers/authControllers.cjs';
+
+authRouter.post('/login', async (req, res) => {
+  try {
+    const { username, password } = req.body;
+    const user = await User.findOne({ username: username });
+    if (!user) {
+      throw new Error('User does not exist!');
+    }
+    const isEqual = await bcrypt.compare(password, user.password);
+    if (!isEqual) {
+      throw new Error('Password is incorrect!');
+    }
+    return res.status(200).json({ ...user._doc, password: null });
+  } catch (error) {}
+});
+
+authRouter.post('/signup', async (req, res) => {
+  try {
+    const { username, password } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = new User({
+      username: username,
+      password: hashedPassword,
+    });
+    const result = await user.save();
+    return res.status(200).json(result);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+// authRouter.post(
+//   '/login',
+//   passport.authenticate('local', {
+//     successRedirect: '/login/success',
+//     failureRedirect: '/login/failure',
+//     failureFlash: true,
+//   }),
+//   (req, res) => {
+//     res.status(200).json({ msg: 'worked' });
+//   }
+// );
 
 authRouter.get('/login/success', (req, res) => {
   if (req.user) {
@@ -20,31 +64,6 @@ authRouter.get('/login/failed', (req, res) => {
     success: false,
     message: 'Login failure',
   });
-});
-
-authRouter.post(
-  '/login',
-  passport.authenticate('local', {
-    successRedirect: '/login/success',
-    failureRedirect: '/login/failure',
-    failureFlash: true,
-  })
-);
-
-authRouter.post('/signup', async (req, res) => {
-  try {
-    const { username, password } = req.body;
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const user = new User({
-      username: username,
-      password: hashedPassword,
-    });
-    const result = await user.save();
-    return res.status(200).json(result);
-  } catch (err) {
-    console.error(err.message);
-    // res.redirect('/signup');
-  }
 });
 
 authRouter.get('/logout', (req, res) => {

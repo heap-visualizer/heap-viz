@@ -10,7 +10,7 @@ import {authService} from '../services/auth_service';
 import {useAppSelector } from "../utils/hooks";
 
 const OptionsPanel = () => {
-    const save = (storedArrays: Array<number>) => {
+    const save = (storedArrays: number[]) => {
         const username = useAppSelector((state: any) => state.user.username)
 
         return axios
@@ -29,9 +29,8 @@ const OptionsPanel = () => {
 
     return (
         <div id = "optionsButtons" className = "optionsButtons">
-            {/* <IconButton aria-label="save"><SaveIcon/></IconButton>
-            <IconButton aria-label="saveAs"><SaveAlt/></IconButton>
-            <IconButton aria-label="logout"><Logout/></IconButton> */}
+            {/* <IconButton aria-label="saveIcon" onClick = {save(localStorage.user.storedArrays)}><SaveIcon/></IconButton> */}
+            {/* <IconButton aria-label="logout" onClick = {authService.logout}><Logout/></IconButton> */}
             {/* <Button id = "newMinHeap" onClick = {() => {}} variant = "cointained">New Min Heap</Button> */}
             {/* <Button id = "newMaxHeap" onClick = {() => {}} variant = "cointained">New Max Heap</Button> */}
         </div>
